@@ -33,8 +33,6 @@ restartBtn.addEventListener('click', () => {
     newGameBtn.setAttribute('disabled', true);
 })
 
-// user.name=ct.vitaliiosadets
-// user.email=ct.vitaliiosadets@waterford.org
 
 
 

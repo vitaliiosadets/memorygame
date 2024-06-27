@@ -22,7 +22,7 @@ export default {
         height: 700,
         width: 700,
     },
-    timeLimit: 2,
+    timeLimit: 20,
     theme: themes.light,
     assets: ASSETS.emojis2,
 }

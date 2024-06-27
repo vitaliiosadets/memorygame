@@ -27,21 +27,24 @@ export default class Board {
         const {height, width} = this.boardStyle;
         this.boardContainer.style.width = `${width}px`
         this.boardContainer.style.height = `${height}px`
+
+        return this;
     }
 
 
-    shuffleCards = (cards) => {
+    shuffleCards = () => {
         for (let current = this.cardsList.length - 1; current > 0; current--) {
             const random = Math.floor(Math.random() * (current + 1));
             [this.cardsList[current], this.cardsList[random]] = [this.cardsList[random], this.cardsList[current]];
         }
-        return cards;
+
+        return this;
     }
     createCards = () => {
         const {columns, gap, rows} = this.grid
 
         this.cardsList.forEach((card, index) => {
-            const cardItem = new Card(card, index, this.cardsList[index], this.cardContainer)
+            const cardItem = new Card(index, this.cardsList[index], this.cardContainer)
             this.generatedCards.push(cardItem)
         })
 
@@ -54,12 +57,16 @@ export default class Board {
             'gap',
             `${gap}px`
         );
+
+        return this;
     }
     createListeners = () => {
         this.cardContainer.addEventListener("click", (e) => {
             if (!e.target.parentElement.classList.contains("card")) return;
             this.handleClick(this.generatedCards[e.target.parentElement.id]);
         });
+
+        return this;
     }
 
     createScore = () => {
@@ -68,6 +75,8 @@ export default class Board {
         score.innerHTML = `<p>Moves: <span class="score__content">${this.tries}</span> </p>`
         this.boardContainer.appendChild(score);
         this.scoreElement = score.querySelector('.score__content');
+
+        return this;
     }
 
     createTimeElements = () => {
@@ -76,6 +85,8 @@ export default class Board {
         time.innerHTML = `<p>Time left: <span class="time__content">${this.time} seconds</span></p>`;
         this.boardContainer.appendChild(time);
         this.timeElement = time.querySelector('.time__content');
+
+        return this;
     }
 
     renderTime() {
@@ -103,6 +114,8 @@ export default class Board {
     setTimerListener() {
         this.boardContainer.addEventListener("mouseenter", () => this.startTimer());
         this.boardContainer.addEventListener("mouseleave", () => this.pauseTimer());
+
+        return this;
     }
 
     handleClick = (card) => {
@@ -163,5 +176,7 @@ export default class Board {
         this.scoreElement.textContent = 0;
         this.timeElement.textContent = `${this.timeLimit} seconds`;
         this.time = this.timeLimit;
+
+        return this;
     }
 }

@@ -1,37 +1,35 @@
 export class Card {
-    constructor(card, id, matchContent, cardContainer) {
-        this.card = card;
+    constructor(id, matchContent, cardContainer) {
         this.id = id;
         this.matchContent = matchContent;
         this.cardContainer = cardContainer;
         this.isFlipped = false;
         this.isMatched = false;
+        this.cardElement = null;
         this.createCard();
     }
 
     createCard = () => {
-        const newCard = document.createElement("div");
-        newCard.classList.add("card");
-        newCard.id = this.id;
-        newCard.dataset.matchContent = this.matchContent;
-        newCard.style.width = `90px`
-        newCard.style.height = `90px`
-        newCard.innerHTML = `
+        this.cardElement = document.createElement("div");
+        this.cardElement.classList.add("card");
+        this.cardElement.id = this.id;
+        this.cardElement.dataset.matchContent = this.matchContent;
+        this.cardElement.style.width = `90px`
+        this.cardElement.style.height = `90px`
+        this.cardElement.innerHTML = `
                         <div class="card__front"></div>
-                        <div class="card__back">${this.card}</div>
+                        <div class="card__back">${this.matchContent}</div>
                       `;
-        this.cardContainer.appendChild(newCard);
+        this.cardContainer.appendChild(this.cardElement);
     }
 
     flipCard = () => {
         this.isFlipped = !this.isFlipped;
-        const cardElement = document.getElementById(this.id)
-        cardElement.classList.toggle('card__flipped')
+        this.cardElement.classList.toggle('card__flipped')
     }
 
     matchCard() {
         this.isMatched = true;
-        const cardElement = document.getElementById(this.id)
-        cardElement.classList.add("card__matched");
+        this.cardElement.classList.add("card__matched");
     }
 }

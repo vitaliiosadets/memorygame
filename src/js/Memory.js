@@ -9,19 +9,19 @@ export default class Memory {
 
     startGame() {
         this.board.createBoard()
-        this.board.shuffleCards()
-        this.board.createCards()
-        this.board.createScore()
-        this.board.createTimeElements()
-        this.board.createListeners()
-        this.board.setTimerListener()
+            .shuffleCards()
+            .createCards()
+            .createScore()
+            .createTimeElements()
+            .createListeners()
+            .setTimerListener()
     }
 
     restartGame() {
-        this.board.reset();
-        this.board.shuffleCards()
-        this.board.createCards()
-        this.board.createListeners()
+        this.board.reset()
+            .shuffleCards()
+            .createCards()
+            .createListeners()
     }
 }
 
